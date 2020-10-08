@@ -6,6 +6,7 @@ const CreateScreen = ({ navigation }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { addBlogPost } = useContext(Context);
+  <Button title="add a blog" onPress={addBlogPost} />;
 
   return (
     <View>
@@ -23,7 +24,11 @@ const CreateScreen = ({ navigation }) => {
       />
       <Button
         title="add blog post"
-        onPress={() => addBlogPost(title, content)}
+        onPress={() =>
+          addBlogPost(title, content, () => {
+            navigation.navigate("Index");
+          })
+        }
       />
     </View>
   );
