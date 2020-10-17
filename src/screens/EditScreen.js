@@ -4,7 +4,7 @@ import { Text, View, StyleSheet } from "react-native";
 const EditScreen = ({ navigation }) => {
   return (
     <View>
-      <Text>asd - {navigation.getParam(id)} </Text>
+      <Text>asd - {navigation.getParam("id")} </Text>
     </View>
   );
 };
