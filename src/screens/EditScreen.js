@@ -11,7 +11,12 @@ const EditScreen = ({ navigation }) => {
     (blogpost) => blogpost.id == navigation.getParam("id")
   );
 
-  return <BlogPostForm />;
+  return (
+    <BlogPostForm
+      initialValue={{ title: BlogPost.title, content: BlogPost.content }}
+      onSubmit={(title, content) => console.log("asd")}
+    />
+  );
 };
 const styles = StyleSheet.create({});
 
