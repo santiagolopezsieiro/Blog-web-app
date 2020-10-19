@@ -1,15 +1,19 @@
 import React, { useReducer } from "react";
 import createDataContext from "./createDataContext";
+import jsonServer from "../api/jsonServer";
+import Axios from "axios";
 
 const blogReducer = (state, action) => {
   switch (action.type) {
+    case "get_blogPost":
+      return action.payload;
     case "edit_BlogPost":
       return state.map((blogPost) => {
         return blogPost.id === action.payload.id ? action.payload : blogPost;
       });
     case "delete_blogPost":
       return state.filter((blogPost) => blogPost.id !== action.payload);
-    case "add_blogpost":
+    case "add_blogPost":
       return [
         ...state,
         {
@@ -23,9 +27,16 @@ const blogReducer = (state, action) => {
   }
 };
 
+const getBlogPost = (dispatch) => {
+  return () => {
+    const response = jsonServer.get("/blogpost");
+    dispatch({ type: "get_blogPost", payload: response.data });
+  };
+};
+
 const addBlogPost = (dispatch) => {
   return (title, content, callback) => {
-    dispatch({ type: "add_blogpost", payload: { title, content } }, callback());
+    dispatch({ type: "add_blogPost", payload: { title, content } }, callback());
   };
 };
 
