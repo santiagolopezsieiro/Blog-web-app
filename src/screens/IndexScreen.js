@@ -21,6 +21,10 @@ const IndexScreen = ({ navigation }) => {
     navigation.addListener("didFocus", () => {
       getBlogPost();
     });
+
+    return () => {
+      addListener.remove();
+    };
   }, []);
 
   return (
