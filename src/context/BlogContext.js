@@ -28,8 +28,8 @@ const blogReducer = (state, action) => {
 };
 
 const getBlogPost = (dispatch) => {
-  return () => {
-    const response = jsonServer.get("/blogpost");
+  return async () => {
+    const response = await jsonServer.get("/blogpost");
     dispatch({ type: "get_blogPost", payload: response.data });
   };
 };
@@ -61,6 +61,7 @@ export const { Context, Provider } = createDataContext(
     addBlogPost,
     deleteBlogPost,
     editBlogPost,
+    getBlogPost,
   },
-  [{ title: "test post", content: "test post", id: 1 }]
+  []
 );
